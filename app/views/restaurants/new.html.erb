@@ -1,0 +1,14 @@
+<div class="container">
+<h1>Create a new restaurant</h1>
+
+<%= simple_form_for @restaurant do |f| %>
+  <%= f.input :name %>
+  <%= f.input :address %>
+  <%= f.input :phone_number %>
+  <%= f.input :category,
+            as: :select,
+            collection: Restaurant::CATEGORIES.map { |c| [c.capitalize, c] },
+            prompt: "Select the restaurant category" %>
+  <%= f.button :submit, class: "btn btn-primary" %>
+<% end %>
+<div>

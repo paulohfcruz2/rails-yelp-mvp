@@ -1,0 +1,23 @@
+<div class="container mt-4">
+  <h2 class="mb-3"><%= @restaurant.name %></h2>
+  <p><strong>Address: </strong> <%= @restaurant.address %></p>
+  <p><strong>Phone number: </strong> <%= @restaurant.phone_number %></p>
+  <p><strong>Category: </strong> <%= @restaurant.category.capitalize %></p>
+  <p><strong>Rating: </strong> <%= @review %></p>
+  <%= link_to "See all restaurants", restaurants_path%> |
+  <%= link_to "Add a new review", new_restaurant_review_path(@restaurant)%>
+  </div>
+</div>
+
+<div class="container mt-4">
+<h1>Reviews</h1>
+<% if @restaurant.reviews.present? %>
+  <ul>
+    <% @restaurant.reviews.each do |review| %>
+      <li><p><%= review.rating%> | <%=review.content%></p></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No reviews yet!</p>
+<% end %>
+</div>

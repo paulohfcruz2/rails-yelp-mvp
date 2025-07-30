@@ -1,0 +1,11 @@
+<div class="container">
+<h1>Create a review to <%= @restaurant.name%></h1>
+
+<%= simple_form_for [@restaurant, @review] do |f| %>
+  <%= f.input :content %>
+  <%= f.input :rating, as: :select, collection: 1..5, prompt: "Select a rating" %>
+  <%= f.button :submit, class: "btn btn-primary" %>
+  <p><%= link_to "See all restaurants", restaurants_path%></p>
+  <p><%= link_to "Go back to #{@restaurant.name}", restaurant_path(@restaurant) %></p>
+<% end %>
+<div>
