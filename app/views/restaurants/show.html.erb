@@ -3,7 +3,7 @@
   <p><strong>Address: </strong> <%= @restaurant.address %></p>
   <p><strong>Phone number: </strong> <%= @restaurant.phone_number %></p>
   <p><strong>Category: </strong> <%= @restaurant.category.capitalize %></p>
-  <p><strong>Rating: </strong> <%= @review %></p>
+  <p><strong>Rating: </strong> <%= @restaurant.reviews.average(:rating)&.round(1) || "No ratings yet" %></p>
   <%= link_to "See all restaurants", restaurants_path%> |
   <%= link_to "Add a new review", new_restaurant_review_path(@restaurant)%>
   </div>
@@ -14,7 +14,7 @@
 <% if @restaurant.reviews.present? %>
   <ul>
     <% @restaurant.reviews.each do |review| %>
-      <li><p><%= review.rating%> | <%=review.content%></p></li>
+      <p><%= '⭐' * review.rating %> | <%= review.content %> | <%= review.created_at.strftime("%B %d") %></p>
     <% end %>
   </ul>
 <% else %>
